@@ -1,0 +1,68 @@
+{% extends 'home.html' %}
+{% block content %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+textarea {
+   resize: none;
+}
+</style>
+</head>
+
+
+<body>
+
+<div align="center">
+  <h1>Marking Form (Create Mode)</h1>
+</div>
+
+<table>
+  <form action="/marking" method="post">
+    <tr>
+      <th>
+        <label for="employee"><h4>Employee</h4></label>
+          <select name="employee" id="employee">
+            <option value="Person">Person</option>
+          </select>
+      </th>
+
+      <th>
+        <label for="model"><h4>Item</h4></label>
+        <input type="text" id="model" name="model">
+      </th>
+
+      <th>
+        <label for="serial"><h4>Serial</h4></label>
+        <input type="text" id="serial" name="serial">
+      </th>
+
+      <th>
+        <label for="ins_type"><h4>Inspection Type</h4></label>
+          <select name="ins_type" id="ins_type">
+            <option value="type1">type1</option>
+            <option value="type2">type2</option>
+          </select>
+      </th>
+      <th>
+          <input type="submit" value="Save">
+      </th>
+    </tr>
+  </form>
+</table>
+</body>
+
+{% endblock %}

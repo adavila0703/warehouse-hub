@@ -1,0 +1,36 @@
+{% block content %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+textarea {
+   resize: none;
+}
+</style>
+</head>
+
+<body>
+
+<div align="center">
+    <h1>Updating Warehouse Hub!</h1>
+    <h2>Your version was out of date, Warehouse Hub will update automatically.</h2>
+    <p></p>
+    <h2>Once the update is finished, Warehouse Hub will automatically restart.</h2>
+    <p></p>
+    <h2>This window can be closed at any time! Thank you for your patience</h2>
+</div>
+
+{% endblock %}

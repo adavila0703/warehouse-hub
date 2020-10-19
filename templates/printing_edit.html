@@ -1,0 +1,209 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+textarea {
+   resize: none;
+}
+</style>
+</head>
+
+<body>
+
+
+
+<div align="center">
+  <h1>printing Form (Edit Mode)</h1>
+</div>
+
+<table>
+    <tr>
+      <th>
+        <label><h4>Employee</h4></label>
+        <label><h4>{{data.employee}}</h4></label>
+      </th>
+
+      <th>
+        <label><h4>Model #</h4></label>
+        <label><h4>{{data.model}}</h4></label>
+      </th>
+
+      <th>
+        <label><h4>Repair # / Serial #</h4></label>
+        <label><h4>{{data.rp_serial}}</h4></label>
+      </th>
+
+      <th>
+        <label><h4>Inspection Type</h4></label>
+        <label><h4>{{data.ins_type}}</h4></label>
+      </th>
+    {% if data.ins_type == 'Repair' %}
+            <th>
+                {% if data.rec_date == '' %}
+                <form action="/printing/{{data.id}}/rec_date" method="post">
+                  <label for="rec_date"><h4>Item Received Date</h4></label>
+                  <input type="submit" value="Receive Unit">
+                </form>
+                {% else %}
+                <label for="rec_date"><h4>Received date has been entered!</h4></label>
+                <input type="hidden" id="rec_date" name="rec_date" value="{{data.rec_date}}">
+                {% endif %}
+              </th>
+              <th>
+          {% if data.rec_date != ''  %}
+              {% if data.rebox == '' %}
+                <label><h4>Complete Date</h4></label>
+                <form action="/printing/{{data.id}}/completed_41" method="post">
+                  <input type="submit" value="Completed">
+                </form>
+              {% endif %}
+          {% endif %}
+      </th>
+      <th>
+        <label for="notes"><h4>Notes</h4></label>
+          <form action="/printing/{{data.id}}/notes" method="post">
+              <textarea id="notes" name="notes" rows="5" cols="10">{{data.notes}}</textarea>
+              <input type="submit" value="Save Notes">
+          </form>
+      </th>
+    {% else %}
+
+      <th>
+        {% if data.rec_date == '' %}
+        <form action="/printing/{{data.id}}/rec_date" method="post">
+          <label for="rec_date"><h4>Item Received Date</h4></label>
+          <input type="submit" value="Receive Unit">
+        </form>
+        {% else %}
+        <label for="rec_date"><h4>Received date has been entered!</h4></label>
+        <input type="hidden" id="rec_date" name="rec_date" value="{{data.rec_date}}">
+        {% endif %}
+      </th>
+
+
+
+
+    </tr>
+
+    <tr>
+
+      <th>
+          {% if data.rec_date != '' %}
+                {% if data.start_date == '' %}
+                <form action="/printing/{{data.id}}/start_date" method="post">
+                  <label for="start_date"><h4>Start Date</h4></label>
+                  <input type="submit" value="Start Unit">
+                </form>
+                {% else %}
+                <label for="start_date"><h4>Start date has been entered!</h4></label>
+                <input type="hidden" id="start_date" name="start_date" value="{{data.start_date}}">
+                {% endif %}
+          {% endif %}
+      </th>
+
+      <th>
+          {% if data.rec_date != '' and data.start_date != '' %}
+                {% if data.accessories == '' %}
+               <label><h4>Accessories Check</h4></label>
+                  <form action="/printing/{{data.id}}/Complete" method="post">
+                  <input type="submit" value="Complete">
+                </form>
+                {% else %}
+                <label for="accessories"><h4>Accessory check has been entered!</h4></label>
+                <input type="hidden" id="accessories" name="accessories" value="{{data.accessories}}">
+                {% endif %}
+          {% endif %}
+      </th>
+
+      <th>
+          {% if data.rec_date != '' and data.start_date != '' and data.accessories != '' %}
+                {% if data.appearance == '' %}
+               <label><h4>Appearance Check</h4></label>
+                  <form action="/printing/{{data.id}}/appearance" method="post">
+                    <input type="submit" value="Complete">
+                  </form>
+                {% else %}
+                <label for="start_date"><h4>Appearance check has been entered!</h4></label>
+                <input type="hidden" id="appearance" name="appearance" value="{{data.appearance}}">
+                {% endif %}
+          {% endif %}
+      </th>
+
+
+      <th>
+          {% if data.rec_date != '' and data.start_date != '' and data.accessories != ''
+          and data.appearance != '' %}
+                {% if data.functions == '' %}
+               <label for="functions"><h4>Functionality Check</h4></label>
+                  <form action="/printing/{{data.id}}/functions" method="post">
+                    <input type="submit" value="Complete">
+                  </form>
+                {% else %}
+                <label for="start_date"><h4>Function check has been entered!</h4></label>
+                <input type="hidden" id="functions" name="functions" value="{{data.functions}}">
+                {% endif %}
+          {% endif %}
+      </th>
+
+      <th>
+          {% if data.rec_date != '' and data.start_date != '' and data.accessories != ''
+          and data.appearance != '' and data.functions != '' %}
+                {% if data.cleaning == '' %}
+               <label><h4>Cleaning</h4></label>
+                  <form action="/printing/{{data.id}}/cleaning" method="post">
+                    <input type="submit" value="Complete">
+                  </form>
+                {% else %}
+                <label for="start_date"><h4>Cleaning has been entered!</h4></label>
+                <input type="hidden" id="cleaning" name="cleaning" value="{{data.cleaning}}">
+                {% endif %}
+          {% endif %}
+      </th>
+
+    </tr>
+
+    <tr>
+      <th>
+          {% if data.rec_date != '' and data.start_date != '' and data.accessories != ''
+          and data.appearance != '' and data.functions != '' and data.cleaning != '' %}
+              {% if data.complete == '' %}
+                <label><h4>Rebox / Complete Date</h4></label>
+                <form action="/printing/{{data.id}}/complete" method="post">
+                  <input type="submit" value="Completed">
+                </form>
+              {% endif %}
+          {% endif %}
+      </th>
+      <th>
+        <label for="notes"><h4>Notes</h4></label>
+          <form action="/printing/{{data.id}}/notes" method="post">
+              <textarea id="notes" name="notes" rows="5" cols="10">{{data.notes}}</textarea>
+              <input type="submit" value="Save Notes">
+          </form>
+      </th>
+{% endif %}
+
+    </tr>
+
+</table>
+</body>
+
+
+{% endblock %}

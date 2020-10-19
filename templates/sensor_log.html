@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+{% block content %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<div align="center">
+  <h1>Sensor Log</h1>
+</div>
+
+<table>
+    <tr>
+        <th><h5>Employee</h5></th>
+        <th><h5>Item</h5></th>
+        <th><h5>Serial</h5></th>
+        <th><h5>Inspection Type</h5></th>
+        <th><h5>Receive Date</h5></th>
+        <th><h5>Start Date</h5></th>
+        <th><h5>Accessories</h5></th>
+        <th><h5>Appearance</h5></th>
+        <th><h5>Functions/h5></th>
+        <th><h5>Cleaning</h5></th>
+        <th><h5>Notes</h5></th>
+        <th><h5>Complete</h5></th>
+        <th><h5>Edit</h5></th>
+    </tr>
+    {% for data in data %}
+  <tr>
+
+      <th>{{data.employee}}</th>
+      <th>{{data.item}}</th>
+      <th>{{data.serial}}</th>
+      <th>{{data.ins_type}}</th>
+      <th>{{data.rec_date}}</th>
+      <th>{{data.start_date}}</th>
+      <th>{{data.accessories}}</th>
+      <th>{{data.appearance}}</th>
+      <th>{{data.functions}}</th>
+      <th>{{data.cleaning}}</th>
+      <th>{{data.notes}}</th>
+      <th>{{data.complete}}</th>
+      <form action="/sensor/{{data.id}}/null">
+          <th><button type="submit">Edit</button></th>
+      </form>
+  </tr>
+    {%endfor%}
+</table>
+</body>
+{% endblock %}
