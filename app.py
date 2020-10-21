@@ -48,6 +48,7 @@ def shutdown_server():
 
 @app.route('/shutdown')
 def shutdown():
+    """Performs server shutdown"""
     os.system(f'start cmd /c "{pathlib.Path().absolute()}/update.exe"')
     shutdown_server()
     return render_template('version.html')

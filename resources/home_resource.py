@@ -9,6 +9,7 @@ version = v.version_final
 
 
 class HomeResource(Resource):
+    """Resource for home page"""
     def get(self):
         try:
             connection = sqlite3.connect('data.db')
